@@ -56,11 +56,11 @@ export function Hero() {
           transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
           className="flex flex-col sm:flex-row items-center justify-center gap-6"
         >
-          <Button size="lg" className="bg-primary hover:bg-primary/90 text-background rounded-none px-10 h-16 text-lg font-bold tracking-wide transition-all duration-300 transform hover:-translate-y-1 shadow-[0_0_20px_-5px_hsl(var(--primary)/0.5)]">
+          <Button size="lg" className="bg-primary hover:bg-primary/90 text-background rounded-full px-10 h-16 text-lg font-bold tracking-wide transition-all duration-300 transform hover:-translate-y-1 shadow-[0_0_20px_-5px_hsl(var(--primary)/0.5)]">
             Start Your Audit
             <ArrowRight className="ml-2 h-5 w-5" />
           </Button>
-          <Button variant="outline" size="lg" className="border-white/10 text-white hover:bg-white/5 hover:border-white/20 rounded-none px-10 h-16 text-lg font-medium backdrop-blur-sm transition-all duration-300">
+          <Button variant="outline" size="lg" className="border-white/10 text-white hover:bg-white/5 hover:border-white/20 rounded-full px-10 h-16 text-lg font-medium backdrop-blur-sm transition-all duration-300">
             Explore Services
           </Button>
         </motion.div>

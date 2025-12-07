@@ -50,7 +50,7 @@ export function Navbar() {
               {link.name}
             </a>
           ))}
-          <Button className="bg-primary hover:bg-primary/90 text-background rounded-none px-6 font-bold tracking-wide transition-all shadow-[0_0_15px_-5px_hsl(var(--primary)/0.4)]">
+          <Button className="bg-primary hover:bg-primary/90 text-background rounded-full px-6 font-bold tracking-wide transition-all shadow-[0_0_15px_-5px_hsl(var(--primary)/0.4)]">
             Start Audit
           </Button>
         </div>
@@ -77,7 +77,7 @@ export function Navbar() {
               {link.name}
             </a>
           ))}
-          <Button className="w-full bg-primary text-background hover:bg-primary/90 rounded-none h-12 font-bold tracking-wide mt-4">
+          <Button className="w-full bg-primary text-background hover:bg-primary/90 rounded-full h-12 font-bold tracking-wide mt-4">
             Start Audit
           </Button>
         </div>

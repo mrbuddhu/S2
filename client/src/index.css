@@ -4,15 +4,16 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-  /* Typography - Moving to a more sophisticated pairing */
+  /* Typography */
   --font-sans: 'Inter', sans-serif;
-  --font-display: 'Playfair Display', serif; /* Luxury editorial feel */
+  --font-display: 'Playfair Display', serif;
   --font-mono: 'JetBrains Mono', monospace;
 
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
 
   --color-background: hsl(var(--background));
   --color-foreground: hsl(var(--foreground));
@@ -45,9 +46,8 @@
 
 :root {
   /* "Old Money" / Premium Tech Aesthetic */
-  /* Deep, rich charcoal instead of pure black for depth */
   --background: 220 15% 6%; /* #0d0f14 */
-  --foreground: 40 20% 97%; /* Off-white/Cream for luxury feel */
+  --foreground: 40 20% 97%;
 
   --card: 220 15% 9%;
   --card-foreground: 40 20% 97%;
@@ -55,7 +55,7 @@
   --popover: 220 15% 8%;
   --popover-foreground: 40 20% 97%;
 
-  /* Sophisticated Gold/Bronze accent instead of electric colors */
+  /* Sophisticated Gold/Bronze accent */
   --primary: 45 40% 60%; /* #d4c59a - Muted Gold */
   --primary-foreground: 220 15% 6%;
 
@@ -75,13 +75,13 @@
   --input: 220 10% 12%;
   --ring: 45 40% 60%;
 
-  --radius: 0rem; /* Sharp corners for premium feel */
+  /* UPDATED: Rounded corners as requested */
+  --radius: 1rem; 
 }
 
 /* Force dark mode styles */
 body {
   @apply bg-background text-foreground font-sans antialiased selection:bg-primary/30 selection:text-primary;
-  /* Subtle noise texture for print-like quality */
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
 }
 
@@ -90,19 +90,17 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .premium-card {
-  @apply bg-card/40 backdrop-blur-sm border border-white/5 transition-all duration-500 hover:border-primary/30;
+  @apply bg-card/40 backdrop-blur-sm border border-white/5 transition-all duration-500 hover:border-primary/30 rounded-2xl;
 }
 
 .premium-text-gradient {
   @apply bg-clip-text text-transparent bg-gradient-to-r from-[#d4c59a] via-[#f3eacb] to-[#a39260];
 }
 
-/* Elegant serif for specific headings */
 .font-serif-display {
   font-family: 'Playfair Display', serif;
 }
 
-/* Smooth scrolling */
 html {
   scroll-behavior: smooth;
 }

@@ -4,6 +4,7 @@ import { Stats } from "@/components/sections/Stats";
 import { TrustedBy } from "@/components/sections/TrustedBy";
 import { Services } from "@/components/sections/Services";
 import { CoreCapabilities } from "@/components/sections/CoreCapabilities";
+import { Team } from "@/components/sections/Team";
 import { VideoTestimonials } from "@/components/sections/VideoTestimonials";
 import { Pricing } from "@/components/sections/Pricing";
 import { CaseStudies } from "@/components/sections/CaseStudies";
@@ -18,8 +19,9 @@ export default function Home() {
         <Hero />
         <Stats />
         <TrustedBy />
-        <Services /> {/* "Fix Your Broken Brand" Services */}
-        <CoreCapabilities /> {/* The 5 Original Cards */}
+        <Services />
+        <Team /> {/* Added Team Section here for flow: Services -> Who does it -> Proof */}
+        <CoreCapabilities />
         <Pricing />
         <CaseStudies />
         <VideoTestimonials />

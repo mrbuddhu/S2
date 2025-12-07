@@ -162,7 +162,7 @@ export function Pricing() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               className={cn(
-                "relative p-8 md:p-10 flex flex-col h-full premium-card group rounded-2xl",
+                "relative p-8 md:p-10 flex flex-col h-full premium-card group",
                 plan.popular ? "bg-card/60 border-primary/20" : "bg-card/20"
               )}
             >
@@ -198,7 +198,7 @@ export function Pricing() {
 
               <Button 
                 className={cn(
-                  "w-full h-14 text-base font-bold tracking-wide rounded-none transition-all duration-300 group-hover:translate-y-[-2px]",
+                  "w-full h-14 text-base font-bold tracking-wide rounded-full transition-all duration-300 group-hover:translate-y-[-2px]",
                   plan.popular 
                     ? "bg-primary text-background hover:bg-primary/90 shadow-[0_0_20px_-5px_hsl(var(--primary)/0.3)]" 
                     : "bg-white/10 text-white hover:bg-white/20"

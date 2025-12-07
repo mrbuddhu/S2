@@ -19,39 +19,39 @@ export function Navbar() {
   const navLinks = [
     { name: "Work", href: "#work" },
     { name: "Services", href: "#services" },
+    { name: "Pricing", href: "#pricing" },
     { name: "About", href: "#about" },
-    { name: "Contact", href: "#contact" },
   ];
 
   return (
     <nav
       className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b",
+        "fixed top-0 left-0 right-0 z-50 transition-all duration-500 border-b",
         isScrolled
-          ? "bg-background/80 backdrop-blur-md border-border py-4"
-          : "bg-transparent border-transparent py-6"
+          ? "bg-background/90 backdrop-blur-xl border-white/5 py-4"
+          : "bg-transparent border-transparent py-8"
       )}
     >
       <div className="container mx-auto px-6 flex items-center justify-between">
         <Link href="/">
-          <span className="text-2xl font-display font-bold tracking-tighter text-white cursor-pointer">
-            SANGANAK<span className="text-primary">HQ</span>
+          <span className="text-2xl font-display font-bold tracking-tight text-white cursor-pointer hover:opacity-80 transition-opacity">
+            SANGANAK<span className="text-primary italic font-serif-display">HQ</span>
           </span>
         </Link>
 
         {/* Desktop Nav */}
-        <div className="hidden md:flex items-center gap-8">
+        <div className="hidden md:flex items-center gap-10">
           {navLinks.map((link) => (
             <a
               key={link.name}
               href={link.href}
-              className="text-sm font-medium text-muted-foreground hover:text-white transition-colors"
+              className="text-sm font-medium text-white/60 hover:text-white transition-colors uppercase tracking-widest text-xs"
             >
               {link.name}
             </a>
           ))}
-          <Button className="bg-white text-black hover:bg-gray-200 rounded-full px-6">
-            Book Strategy Call
+          <Button className="bg-primary hover:bg-primary/90 text-background rounded-none px-6 font-bold tracking-wide transition-all shadow-[0_0_15px_-5px_hsl(var(--primary)/0.4)]">
+            Start Audit
           </Button>
         </div>
 
@@ -66,19 +66,19 @@ export function Navbar() {
 
       {/* Mobile Nav */}
       {mobileMenuOpen && (
-        <div className="md:hidden absolute top-full left-0 right-0 bg-background border-b border-border p-6 flex flex-col gap-4 animate-in slide-in-from-top-5">
+        <div className="md:hidden absolute top-full left-0 right-0 bg-background border-b border-white/10 p-8 flex flex-col gap-6 animate-in slide-in-from-top-5 shadow-2xl">
           {navLinks.map((link) => (
             <a
               key={link.name}
               href={link.href}
-              className="text-lg font-medium text-white"
+              className="text-2xl font-display font-medium text-white hover:text-primary transition-colors"
               onClick={() => setMobileMenuOpen(false)}
             >
               {link.name}
             </a>
           ))}
-          <Button className="w-full bg-primary text-white hover:bg-primary/90 rounded-full">
-            Book Strategy Call
+          <Button className="w-full bg-primary text-background hover:bg-primary/90 rounded-none h-12 font-bold tracking-wide mt-4">
+            Start Audit
           </Button>
         </div>
       )}

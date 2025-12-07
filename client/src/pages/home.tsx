@@ -2,6 +2,7 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Hero } from "@/components/sections/Hero";
 import { TrustedBy } from "@/components/sections/TrustedBy";
 import { Services } from "@/components/sections/Services";
+import { Pricing } from "@/components/sections/Pricing";
 import { CaseStudies } from "@/components/sections/CaseStudies";
 import { Testimonials } from "@/components/sections/Testimonials";
 import { Footer } from "@/components/layout/Footer";
@@ -14,6 +15,7 @@ export default function Home() {
         <Hero />
         <TrustedBy />
         <Services />
+        <Pricing />
         <CaseStudies />
         <Testimonials />
       </main>

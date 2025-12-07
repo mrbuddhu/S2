@@ -4,8 +4,10 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
+  /* Typography - Moving to a more sophisticated pairing */
   --font-sans: 'Inter', sans-serif;
-  --font-display: 'Outfit', sans-serif;
+  --font-display: 'Playfair Display', serif; /* Luxury editorial feel */
+  --font-mono: 'JetBrains Mono', monospace;
 
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
@@ -42,78 +44,65 @@
 }
 
 :root {
-  /* Dark Mode Default for that "Boutique" feel */
-  --background: 240 10% 4%; /* #09090b */
-  --foreground: 0 0% 98%;
+  /* "Old Money" / Premium Tech Aesthetic */
+  /* Deep, rich charcoal instead of pure black for depth */
+  --background: 220 15% 6%; /* #0d0f14 */
+  --foreground: 40 20% 97%; /* Off-white/Cream for luxury feel */
 
-  --card: 240 10% 7%;
-  --card-foreground: 0 0% 98%;
+  --card: 220 15% 9%;
+  --card-foreground: 40 20% 97%;
 
-  --popover: 240 10% 5%;
-  --popover-foreground: 0 0% 98%;
+  --popover: 220 15% 8%;
+  --popover-foreground: 40 20% 97%;
 
-  --primary: 250 100% 65%; /* Electric Indigo */
-  --primary-foreground: 0 0% 100%;
+  /* Sophisticated Gold/Bronze accent instead of electric colors */
+  --primary: 45 40% 60%; /* #d4c59a - Muted Gold */
+  --primary-foreground: 220 15% 6%;
 
-  --secondary: 240 5% 15%;
-  --secondary-foreground: 0 0% 98%;
+  --secondary: 220 10% 12%;
+  --secondary-foreground: 40 20% 90%;
 
-  --muted: 240 5% 15%;
-  --muted-foreground: 240 5% 65%;
+  --muted: 220 10% 12%;
+  --muted-foreground: 220 5% 55%;
 
-  --accent: 250 100% 65%;
-  --accent-foreground: 0 0% 100%;
+  --accent: 45 40% 60%;
+  --accent-foreground: 220 15% 6%;
 
   --destructive: 0 62% 30%;
   --destructive-foreground: 0 0% 98%;
 
-  --border: 240 5% 15%;
-  --input: 240 5% 15%;
-  --ring: 250 100% 65%;
+  --border: 220 10% 12%;
+  --input: 220 10% 12%;
+  --ring: 45 40% 60%;
 
-  --radius: 0.75rem;
+  --radius: 0rem; /* Sharp corners for premium feel */
 }
 
-/* Force dark mode styles since we want a specific aesthetic */
+/* Force dark mode styles */
 body {
-  @apply bg-background text-foreground font-sans antialiased selection:bg-primary/20 selection:text-primary;
-  background-image: 
-    radial-gradient(circle at 50% 0%, hsl(250 100% 65% / 0.15), transparent 40%),
-    radial-gradient(circle at 0% 50%, hsl(250 100% 65% / 0.05), transparent 40%);
-  background-attachment: fixed;
+  @apply bg-background text-foreground font-sans antialiased selection:bg-primary/30 selection:text-primary;
+  /* Subtle noise texture for print-like quality */
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
 }
 
 h1, h2, h3, h4, h5, h6 {
-  @apply font-display tracking-tight;
+  @apply font-display tracking-tight text-white;
 }
 
-.glass {
-  @apply bg-background/60 backdrop-blur-xl border border-white/5;
+.premium-card {
+  @apply bg-card/40 backdrop-blur-sm border border-white/5 transition-all duration-500 hover:border-primary/30;
 }
 
-.glass-card {
-  @apply bg-card/50 backdrop-blur-lg border border-white/5 hover:border-primary/50 transition-colors duration-300;
+.premium-text-gradient {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-[#d4c59a] via-[#f3eacb] to-[#a39260];
 }
 
-.text-gradient {
-  @apply bg-clip-text text-transparent bg-gradient-to-r from-white via-white to-white/50;
+/* Elegant serif for specific headings */
+.font-serif-display {
+  font-family: 'Playfair Display', serif;
 }
 
-.text-gradient-primary {
-  @apply bg-clip-text text-transparent bg-gradient-to-r from-primary via-purple-400 to-pink-500;
-}
-
-/* Custom scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
-}
-::-webkit-scrollbar-track {
-  background: hsl(var(--background));
-}
-::-webkit-scrollbar-thumb {
-  background: hsl(var(--muted));
-  border-radius: 4px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: hsl(var(--muted-foreground));
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
 }

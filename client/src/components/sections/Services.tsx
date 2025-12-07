@@ -1,65 +1,98 @@
 import { motion } from "framer-motion";
-import { Palette, Smartphone, Cpu, Blocks, TrendingUp, ArrowUpRight } from "lucide-react";
+import { 
+  ScanSearch, 
+  Palette, 
+  Code2, 
+  Megaphone, 
+  LineChart, 
+  Rocket 
+} from "lucide-react";
 
 const services = [
   {
-    icon: <Palette className="w-8 h-8 text-pink-500" />,
-    title: "Branding & Design",
-    description: "Crafting unique identities that resonate. We build visual languages that speak louder than words.",
+    icon: ScanSearch,
+    title: "Brand / App / Campaign Audit",
+    description: "A full teardown of your design, code, and marketing systems to identify what's not working — from UX flow and copy to funnel performance and ad strategy.",
+    number: "01"
   },
   {
-    icon: <Smartphone className="w-8 h-8 text-blue-500" />,
-    title: "Web & Mobile Apps",
-    description: "High-performance, scalable applications built with cutting-edge tech stacks (React, Native, Node).",
+    icon: Palette,
+    title: "Design & Experience Rebuild",
+    description: "Redesign AI-generated or poorly structured visuals into a professional, high-converting brand identity and UI/UX system that actually makes users stay.",
+    number: "02"
   },
   {
-    icon: <Cpu className="w-8 h-8 text-purple-500" />,
-    title: "Artificial Intelligence",
-    description: "Leveraging AI to automate workflows, predict trends, and create smarter user experiences.",
+    icon: Code2,
+    title: "Codebase Fix & Optimization",
+    description: "Refactor broken or messy frontend/back-end code for speed, stability, and performance. Delivered clean, scalable, and production-ready.",
+    number: "03"
   },
   {
-    icon: <Blocks className="w-8 h-8 text-emerald-500" />,
-    title: "Blockchain",
-    description: "Secure, decentralized solutions for the next generation of the internet (Web3, NFTs, DeFi).",
+    icon: Megaphone,
+    title: "Marketing & Funnel Revamp",
+    description: "Rebuild ad creatives, email flows, and landing pages with data-driven copy and modern funnel logic to increase conversions.",
+    number: "04"
   },
   {
-    icon: <TrendingUp className="w-8 h-8 text-orange-500" />,
-    title: "Growth Marketing",
-    description: "Data-driven strategies to acquire, retain, and monetize users. SEO, paid ads, and funnels.",
+    icon: LineChart,
+    title: "Conversion & Performance Testing",
+    description: "Comprehensive testing of every stage — design, dev, and marketing — with analytics setup (GA4, Meta Pixel, etc.) and improvement reports.",
+    number: "05"
   },
+  {
+    icon: Rocket,
+    title: "Optional: Growth Kickstart",
+    description: "A 30-day launch or re-launch campaign with optimized content, ad sets, and tracking dashboards to drive immediate traction.",
+    number: "06"
+  }
 ];
 
 export function Services() {
   return (
-    <section id="services" className="py-24 relative">
+    <section id="services" className="py-32 bg-background border-t border-white/5">
       <div className="container mx-auto px-6">
-        <div className="mb-16">
-          <h2 className="text-4xl md:text-5xl font-display font-bold text-white mb-6">
-            Our Expertise
+        <div className="mb-20 max-w-4xl">
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="flex items-center gap-4 mb-6"
+          >
+            <div className="h-[1px] w-12 bg-primary"></div>
+            <span className="text-primary font-medium tracking-widest uppercase text-sm">What's Included</span>
+          </motion.div>
+          
+          <h2 className="text-5xl md:text-7xl font-display font-medium text-white mb-8">
+            Comprehensive <span className="italic font-serif-display text-muted-foreground">Repair</span> System.
           </h2>
-          <p className="text-xl text-muted-foreground max-w-2xl">
-            We don't just build software; we build businesses. Our holistic approach ensures every pixel and line of code drives growth.
+          <p className="text-xl text-muted-foreground/80 max-w-2xl font-light">
+            We don't just patch holes. We rebuild the foundation. A holistic approach to fixing your digital presence.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-16">
           {services.map((service, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="glass-card p-8 rounded-2xl group cursor-pointer"
+              className="group relative"
             >
-              <div className="mb-6 p-4 rounded-xl bg-white/5 w-fit group-hover:scale-110 transition-transform duration-300">
-                {service.icon}
+              <div className="absolute -left-4 top-0 text-8xl font-display font-bold text-white/[0.02] -z-10 group-hover:text-primary/[0.05] transition-colors duration-500 select-none">
+                {service.number}
               </div>
-              <h3 className="text-2xl font-display font-bold text-white mb-3 flex items-center gap-2">
+              
+              <div className="mb-6 inline-flex p-4 rounded-none border border-white/10 bg-white/[0.02] backdrop-blur-sm group-hover:border-primary/40 transition-colors duration-300">
+                <service.icon className="w-8 h-8 text-white/80 group-hover:text-primary transition-colors duration-300" />
+              </div>
+              
+              <h3 className="text-2xl font-display font-medium text-white mb-4 group-hover:text-primary transition-colors duration-300">
                 {service.title}
-                <ArrowUpRight className="w-5 h-5 opacity-0 group-hover:opacity-100 transition-opacity text-muted-foreground" />
               </h3>
-              <p className="text-muted-foreground leading-relaxed">
+              
+              <p className="text-muted-foreground leading-relaxed font-light border-l border-white/10 pl-4 group-hover:border-primary/30 transition-colors duration-300">
                 {service.description}
               </p>
             </motion.div>

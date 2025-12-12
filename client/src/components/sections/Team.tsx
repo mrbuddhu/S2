@@ -1,12 +1,13 @@
 import { motion } from "framer-motion";
-import { Linkedin, Twitter, ArrowUpRight } from "lucide-react";
+import { Linkedin, Twitter } from "lucide-react";
+import { cardHover, viewportOptions } from "@/lib/animations";
 import founder1 from "@assets/generated_images/professional_headshot_of_a_tech_founder_male.png";
 import founder2 from "@assets/generated_images/professional_headshot_of_a_creative_director_female.png";
 
-const teamMembers = [
-  "Lead Engineer", "Senior Designer", "Growth Strategist", 
-  "Backend Architect", "UX Researcher", "Content Lead",
-  "Frontend Specialist", "AI Engineer", "Product Manager", "QA Lead"
+const expertiseFields = [
+  "Brand Strategy", "UI/UX Design", "Web Development", 
+  "Mobile Development", "AI Integration", "Blockchain",
+  "Growth Marketing", "Content Strategy", "Product Management", "QA & Testing"
 ];
 
 export function Team() {
@@ -26,28 +27,44 @@ export function Team() {
             Built by <span className="italic text-primary font-serif-display">Obsessives.</span>
           </h2>
           <p className="text-xl text-muted-foreground font-light leading-relaxed">
-            No juniors. No outsourcing. Just a lean team of 12 elite engineers and designers who refuse to ship average work. We don't just build; we craft.
+            No juniors. No outsourcing. Just a lean team of elite specialists who refuse to ship average work.
           </p>
         </div>
 
         {/* Founders */}
         <div className="grid md:grid-cols-2 gap-8 mb-24 max-w-5xl mx-auto">
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="group relative bg-card/30 rounded-3xl border border-white/5 p-8 hover:border-primary/30 transition-all duration-500 overflow-hidden"
+            initial={{ opacity: 0, x: -50, rotateY: -15 }}
+            whileInView={{ opacity: 1, x: 0, rotateY: 0 }}
+            viewport={viewportOptions}
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            variants={cardHover}
+            whileHover="hover"
+            whileTap="tap"
+            className="group relative bg-card/30 rounded-3xl border border-white/5 p-8 overflow-hidden cursor-pointer"
           >
             <div className="flex flex-col md:flex-row items-center gap-8">
-              <div className="relative w-32 h-32 md:w-40 md:h-40 shrink-0">
-                <div className="absolute inset-0 bg-primary/20 rounded-full blur-2xl group-hover:bg-primary/30 transition-colors duration-500" />
-                <img 
-                  src={founder1} 
-                  alt="Aryabhatta" 
-                  className="w-full h-full object-cover rounded-full border-2 border-white/10 relative z-10"
+              <motion.div 
+                className="relative w-32 h-32 md:w-40 md:h-40 shrink-0"
+                whileHover={{ scale: 1.1 }}
+                transition={{ duration: 0.3 }}
+              >
+                <motion.div 
+                  className="absolute inset-0 bg-primary/20 rounded-full blur-2xl"
+                  whileHover={{ 
+                    backgroundColor: "rgba(212, 197, 154, 0.3)",
+                    scale: 1.2
+                  }}
+                  transition={{ duration: 0.5 }}
                 />
-              </div>
+                <motion.img 
+                  src={founder1} 
+                  alt="Aryabhatta - Founder and Technical Lead of SanganakHQ" 
+                  className="w-full h-full object-cover rounded-full border-2 border-white/10 relative z-10"
+                  whileHover={{ rotate: [0, -5, 5, -5, 0] }}
+                  transition={{ duration: 0.5 }}
+                />
+              </motion.div>
               <div className="text-center md:text-left">
                 <h3 className="text-2xl font-display font-bold text-white mb-1">Aryabhatta</h3>
                 <p className="text-primary font-medium tracking-wide uppercase text-sm mb-4">Founder & Technical Lead</p>
@@ -55,72 +72,137 @@ export function Team() {
                   "Code isn't just function; it's architecture. I build systems that scale effortlessly and perform instantly."
                 </p>
                 <div className="flex justify-center md:justify-start gap-4">
-                  <a href="#" className="p-2 rounded-full bg-white/5 hover:bg-white/10 text-white/60 hover:text-white transition-colors">
+                  <motion.a 
+                    href="#" 
+                    className="p-2 rounded-full bg-white/5 text-white/60"
+                    whileHover={{ 
+                      backgroundColor: "rgba(255, 255, 255, 0.1)",
+                      color: "#fff",
+                      scale: 1.2,
+                      rotate: 360
+                    }}
+                    whileTap={{ scale: 0.9 }}
+                    transition={{ duration: 0.3 }}
+                  >
                     <Linkedin className="w-5 h-5" />
-                  </a>
-                  <a href="#" className="p-2 rounded-full bg-white/5 hover:bg-white/10 text-white/60 hover:text-white transition-colors">
+                  </motion.a>
+                  <motion.a 
+                    href="#" 
+                    className="p-2 rounded-full bg-white/5 text-white/60"
+                    whileHover={{ 
+                      backgroundColor: "rgba(255, 255, 255, 0.1)",
+                      color: "#fff",
+                      scale: 1.2,
+                      rotate: 360
+                    }}
+                    whileTap={{ scale: 0.9 }}
+                    transition={{ duration: 0.3 }}
+                  >
                     <Twitter className="w-5 h-5" />
-                  </a>
+                  </motion.a>
                 </div>
               </div>
             </div>
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="group relative bg-card/30 rounded-3xl border border-white/5 p-8 hover:border-primary/30 transition-all duration-500 overflow-hidden"
+            initial={{ opacity: 0, x: 50, rotateY: 15 }}
+            whileInView={{ opacity: 1, x: 0, rotateY: 0 }}
+            viewport={viewportOptions}
+            transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+            variants={cardHover}
+            whileHover="hover"
+            whileTap="tap"
+            className="group relative bg-card/30 rounded-3xl border border-white/5 p-8 overflow-hidden cursor-pointer"
           >
             <div className="flex flex-col md:flex-row items-center gap-8">
-              <div className="relative w-32 h-32 md:w-40 md:h-40 shrink-0">
-                <div className="absolute inset-0 bg-primary/20 rounded-full blur-2xl group-hover:bg-primary/30 transition-colors duration-500" />
-                <img 
-                  src={founder2} 
-                  alt="Co-Founder" 
-                  className="w-full h-full object-cover rounded-full border-2 border-white/10 relative z-10"
+              <motion.div 
+                className="relative w-32 h-32 md:w-40 md:h-40 shrink-0"
+                whileHover={{ scale: 1.1 }}
+                transition={{ duration: 0.3 }}
+              >
+                <motion.div 
+                  className="absolute inset-0 bg-primary/20 rounded-full blur-2xl"
+                  whileHover={{ 
+                    backgroundColor: "rgba(212, 197, 154, 0.3)",
+                    scale: 1.2
+                  }}
+                  transition={{ duration: 0.5 }}
                 />
-              </div>
+                <motion.img 
+                  src={founder2} 
+                  alt="Shabi - Co-Founder and Design Director of SanganakHQ" 
+                  className="w-full h-full object-cover rounded-full border-2 border-white/10 relative z-10"
+                  whileHover={{ rotate: [0, 5, -5, 5, 0] }}
+                  transition={{ duration: 0.5 }}
+                />
+              </motion.div>
               <div className="text-center md:text-left">
-                <h3 className="text-2xl font-display font-bold text-white mb-1">Elena</h3>
+                <h3 className="text-2xl font-display font-bold text-white mb-1">Shabi</h3>
                 <p className="text-primary font-medium tracking-wide uppercase text-sm mb-4">Co-Founder & Design Director</p>
                 <p className="text-muted-foreground text-sm leading-relaxed mb-6">
                   "Design is the silent ambassador of your brand. We ensure it speaks the language of authority and trust."
                 </p>
                 <div className="flex justify-center md:justify-start gap-4">
-                  <a href="#" className="p-2 rounded-full bg-white/5 hover:bg-white/10 text-white/60 hover:text-white transition-colors">
+                  <motion.a 
+                    href="#" 
+                    className="p-2 rounded-full bg-white/5 text-white/60"
+                    whileHover={{ 
+                      backgroundColor: "rgba(255, 255, 255, 0.1)",
+                      color: "#fff",
+                      scale: 1.2,
+                      rotate: 360
+                    }}
+                    whileTap={{ scale: 0.9 }}
+                    transition={{ duration: 0.3 }}
+                  >
                     <Linkedin className="w-5 h-5" />
-                  </a>
-                  <a href="#" className="p-2 rounded-full bg-white/5 hover:bg-white/10 text-white/60 hover:text-white transition-colors">
+                  </motion.a>
+                  <motion.a 
+                    href="#" 
+                    className="p-2 rounded-full bg-white/5 text-white/60"
+                    whileHover={{ 
+                      backgroundColor: "rgba(255, 255, 255, 0.1)",
+                      color: "#fff",
+                      scale: 1.2,
+                      rotate: 360
+                    }}
+                    whileTap={{ scale: 0.9 }}
+                    transition={{ duration: 0.3 }}
+                  >
                     <Twitter className="w-5 h-5" />
-                  </a>
+                  </motion.a>
                 </div>
               </div>
             </div>
           </motion.div>
         </div>
 
-        {/* Team Grid */}
+        {/* Expertise Fields Grid */}
         <div className="max-w-6xl mx-auto">
           <h4 className="text-center text-white/40 text-sm font-medium uppercase tracking-widest mb-10">
-            Backed by 10 Elite Specialists
+            <span className="text-primary font-bold">10+</span> Experts Across All Fields
           </h4>
           <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
-            {teamMembers.map((role, index) => (
+            {expertiseFields.map((field, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: index * 0.05 }}
-                className="group p-4 bg-white/[0.02] border border-white/5 rounded-2xl text-center hover:bg-white/[0.05] transition-colors"
+                initial={{ opacity: 0, y: 20, scale: 0.8 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                viewport={viewportOptions}
+                transition={{ 
+                  duration: 0.5, 
+                  delay: index * 0.05,
+                  type: "spring",
+                  stiffness: 100
+                }}
+                variants={cardHover}
+                whileHover="hover"
+                whileTap="tap"
+                className="group p-6 bg-white/[0.02] border border-white/5 rounded-2xl text-center cursor-pointer hover:border-primary/30 hover:bg-white/[0.05] transition-all"
               >
-                <div className="w-12 h-12 mx-auto bg-gradient-to-br from-white/10 to-white/5 rounded-full mb-3 flex items-center justify-center text-xs font-bold text-white/30 group-hover:text-primary transition-colors">
-                  {role.split(' ').map(w => w[0]).join('')}
-                </div>
                 <p className="text-sm font-medium text-white/80 group-hover:text-white transition-colors">
-                  {role}
+                  {field}
                 </p>
               </motion.div>
             ))}

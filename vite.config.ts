@@ -43,6 +43,15 @@ export default defineConfig({
   server: {
     host: "0.0.0.0",
     allowedHosts: true,
+    hmr: {
+      protocol: 'ws',
+      host: 'localhost',
+      port: 3000,
+    },
+    watch: {
+      usePolling: false,
+      interval: 100,
+    },
     fs: {
       strict: true,
       deny: ["**/.*"],

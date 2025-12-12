@@ -1,6 +1,8 @@
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, ArrowUpRight, Maximize2 } from "lucide-react";
+import { scrollReveal, cardHover, viewportOptions } from "@/lib/animations";
 import project1 from "@assets/generated_images/saas_dashboard_dark_mode.png";
 import project2 from "@assets/generated_images/mobile_app_crypto_wallet.png";
 import project3 from "@assets/generated_images/e-commerce_fashion_store.png";
@@ -98,8 +100,21 @@ const projects = [
 ];
 
 export function CaseStudies() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"]
+  });
+
+  const opacity = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0, 1, 1, 0]);
+
   return (
-    <section id="work" className="py-32 bg-background relative z-10">
+    <section 
+      ref={sectionRef}
+      id="work" 
+      className="py-32 bg-background relative z-10"
+      style={{ opacity }}
+    >
       <div className="container mx-auto px-6">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-20 gap-8">
           <div className="max-w-3xl">
@@ -129,31 +144,41 @@ export function CaseStudies() {
           {projects.map((project, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.5, delay: index * 0.05 }}
+              initial={{ opacity: 0, y: 30, scale: 0.95 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              viewport={viewportOptions}
+              transition={{ duration: 0.6, delay: index * 0.05, ease: [0.22, 1, 0.36, 1] }}
+              variants={cardHover}
+              whileHover="hover"
+              whileTap="tap"
               className={`group relative rounded-3xl overflow-hidden border border-white/5 bg-card/20 cursor-pointer ${
                 project.size === 'large' ? 'md:col-span-2' : 
                 project.size === 'medium' ? 'row-span-2' : ''
               }`}
             >
               {/* Image with Zoom Effect */}
-              <div className="absolute inset-0 overflow-hidden">
-                <img 
+              <motion.div 
+                className="absolute inset-0 overflow-hidden"
+                whileHover={{ scale: 1.05 }}
+                transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+              >
+                <motion.img 
                   src={project.image} 
                   alt={project.title}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-80 group-hover:opacity-60"
+                  className="w-full h-full object-cover"
+                  initial={{ scale: 1, opacity: 0.8 }}
+                  whileHover={{ scale: 1.15, opacity: 0.6 }}
+                  transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-90" />
-              </div>
+              </motion.div>
 
               {/* Content Overlay */}
               <div className="absolute inset-0 p-8 flex flex-col justify-end">
                 <div className="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
                   <div className="flex flex-wrap gap-2 mb-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100">
                     {project.tags.map((tag, i) => (
-                      <span key={i} className="px-2 py-1 rounded-md bg-white/10 backdrop-blur-md text-[10px] font-bold uppercase tracking-wider text-white border border-white/10">
+                      <span key={i} className="px-3 py-1 rounded-full bg-white/10 backdrop-blur-md text-[10px] font-bold uppercase tracking-wider text-white border border-white/10 transition-all duration-300 hover:bg-white/20 hover:border-primary/30">
                         {tag}
                       </span>
                     ))}
@@ -169,9 +194,19 @@ export function CaseStudies() {
                       </h3>
                     </div>
                     
-                    <div className="w-12 h-12 rounded-full bg-white text-black flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 translate-x-4 group-hover:translate-x-0">
+                    <motion.div 
+                      className="w-12 h-12 rounded-full bg-white text-black flex items-center justify-center"
+                      initial={{ opacity: 0, x: 20, rotate: -45 }}
+                      whileHover={{ 
+                        opacity: 1, 
+                        x: 0, 
+                        rotate: 0,
+                        scale: 1.1,
+                        transition: { duration: 0.3 }
+                      }}
+                    >
                       <ArrowUpRight className="w-6 h-6" />
-                    </div>
+                    </motion.div>
                   </div>
                 </div>
               </div>

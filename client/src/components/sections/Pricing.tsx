@@ -1,8 +1,10 @@
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { CheckCircle2, ArrowRight } from "lucide-react";
-import { useState } from "react";
 import { cn } from "@/lib/utils";
+import { cardHover, viewportOptions } from "@/lib/animations";
+import { ContactForm } from "./ContactForm";
 
 // Define a unified interface for the plan
 interface Plan {
@@ -110,9 +112,22 @@ const retainerPlans: Plan[] = [
 
 export function Pricing() {
   const [isRetainer, setIsRetainer] = useState(false);
+  const [contactOpen, setContactOpen] = useState(false);
+  const [selectedPlan, setSelectedPlan] = useState("");
+  const sectionRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"]
+  });
+
+  const y = useTransform(scrollYProgress, [0, 1], [0, -50]);
 
   return (
-    <section id="pricing" className="py-32 relative bg-background">
+    <section 
+      ref={sectionRef}
+      id="pricing" 
+      className="py-32 relative bg-background"
+    >
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,hsl(var(--primary)/0.05),transparent_50%)]" />
       
       <div className="container mx-auto px-6 relative z-10">
@@ -125,30 +140,42 @@ export function Pricing() {
           </p>
 
           {/* Toggle Switch */}
-          <div className="inline-flex items-center p-1 bg-white/5 border border-white/10 rounded-full backdrop-blur-md">
-            <button
+          <motion.div 
+            className="inline-flex items-center p-1 bg-white/5 border border-white/10 rounded-full backdrop-blur-md"
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={viewportOptions}
+            transition={{ duration: 0.5 }}
+          >
+            <motion.button
               onClick={() => setIsRetainer(false)}
               className={cn(
-                "px-8 py-3 rounded-full text-sm font-bold tracking-wide transition-all duration-300",
+                "px-8 py-3 rounded-full text-sm font-bold tracking-wide",
                 !isRetainer 
                   ? "bg-primary text-background shadow-lg" 
-                  : "text-muted-foreground hover:text-white"
+                  : "text-muted-foreground"
               )}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              transition={{ duration: 0.2 }}
             >
               One-Off Projects
-            </button>
-            <button
+            </motion.button>
+            <motion.button
               onClick={() => setIsRetainer(true)}
               className={cn(
-                "px-8 py-3 rounded-full text-sm font-bold tracking-wide transition-all duration-300",
+                "px-8 py-3 rounded-full text-sm font-bold tracking-wide",
                 isRetainer 
                   ? "bg-primary text-background shadow-lg" 
-                  : "text-muted-foreground hover:text-white"
+                  : "text-muted-foreground"
               )}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              transition={{ duration: 0.2 }}
             >
               Monthly Retainer
-            </button>
-          </div>
+            </motion.button>
+          </motion.div>
         </div>
 
         <div className={cn(
@@ -158,11 +185,20 @@ export function Pricing() {
           {(isRetainer ? retainerPlans : oneOffPlans).map((plan, index) => (
             <motion.div
               key={plan.name}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
+              initial={{ opacity: 0, y: 50, scale: 0.9 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              viewport={viewportOptions}
+              transition={{ 
+                duration: 0.6, 
+                delay: index * 0.1,
+                ease: [0.22, 1, 0.36, 1]
+              }}
+              variants={cardHover}
+              whileHover="hover"
+              whileTap="tap"
+              style={{ y: index % 2 === 0 ? y : undefined }}
               className={cn(
-                "relative p-8 md:p-10 flex flex-col h-full premium-card group",
+                "relative p-8 md:p-10 flex flex-col h-full premium-card group cursor-pointer",
                 plan.popular ? "bg-card/60 border-primary/20" : "bg-card/20"
               )}
             >
@@ -203,6 +239,10 @@ export function Pricing() {
                     ? "bg-primary text-background hover:bg-primary/90 shadow-[0_0_20px_-5px_hsl(var(--primary)/0.3)]" 
                     : "bg-white/10 text-white hover:bg-white/20"
                 )}
+                onClick={() => {
+                  setSelectedPlan(plan.name);
+                  setContactOpen(true);
+                }}
               >
                 {plan.cta} <ArrowRight className="ml-2 w-4 h-4" />
               </Button>
@@ -210,6 +250,11 @@ export function Pricing() {
           ))}
         </div>
       </div>
+      <ContactForm 
+        open={contactOpen} 
+        onOpenChange={setContactOpen}
+        defaultProjectType={selectedPlan ? `pricing-${selectedPlan.toLowerCase()}` : ""}
+      />
     </section>
   );
 }

@@ -96,7 +96,7 @@ export function VideoTestimonials() {
                 </div>
 
                 {/* Duration Badge */}
-                <div className="absolute top-4 right-4 px-2 py-1 bg-black/60 backdrop-blur-md rounded text-xs font-mono text-white/90">
+                <div className="absolute top-4 right-4 px-3 py-1 rounded-full bg-black/60 backdrop-blur-md text-xs font-mono text-white/90 border border-white/10">
                   {video.duration}
                 </div>
 

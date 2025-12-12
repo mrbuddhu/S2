@@ -55,8 +55,8 @@
   --popover: 220 15% 8%;
   --popover-foreground: 40 20% 97%;
 
-  /* Sophisticated Gold/Bronze accent */
-  --primary: 45 40% 60%; /* #d4c59a - Muted Gold */
+  /* Sophisticated Gold/Bronze accent - Maximum Brightness & Vibrancy */
+  --primary: 45 60% 80%; /* Very Bright Gold - High saturation & lightness */
   --primary-foreground: 220 15% 6%;
 
   --secondary: 220 10% 12%;
@@ -65,7 +65,7 @@
   --muted: 220 10% 12%;
   --muted-foreground: 220 5% 55%;
 
-  --accent: 45 40% 60%;
+  --accent: 45 60% 80%;
   --accent-foreground: 220 15% 6%;
 
   --destructive: 0 62% 30%;
@@ -73,7 +73,7 @@
 
   --border: 220 10% 12%;
   --input: 220 10% 12%;
-  --ring: 45 40% 60%;
+  --ring: 45 60% 80%;
 
   /* UPDATED: Rounded corners as requested */
   --radius: 1rem; 
@@ -94,7 +94,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .premium-text-gradient {
-  @apply bg-clip-text text-transparent bg-gradient-to-r from-[#d4c59a] via-[#f3eacb] to-[#a39260];
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-[#f5e8a8] via-[#fff4d4] to-[#e8d4a0];
 }
 
 .font-serif-display {

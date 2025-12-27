@@ -44,9 +44,9 @@ export function CoreCapabilities() {
         <div className="mb-16 md:flex md:items-end md:justify-between">
           <div className="max-w-2xl">
             <h2 className="text-3xl md:text-5xl font-display font-medium text-white mb-6">
-              Core <span className="italic font-serif-display text-primary">Capabilities</span>
+              <span className="text-gold-gradient">Core</span> <span className="italic font-serif-display text-gold-gradient">Capabilities</span>
             </h2>
-            <p className="text-lg text-muted-foreground">
+            <p className="text-lg text-muted-foreground/90 font-sans font-normal">
               Beyond fixing broken brands, we build world-class digital products from scratch. 
               Our engineering DNA runs deep across these five pillars.
             </p>

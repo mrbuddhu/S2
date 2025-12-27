@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { ContactForm } from "@/components/sections/ContactForm";
+import logo from "/SanganakHQLogo.png";
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -20,10 +21,10 @@ export function Navbar() {
   }, []);
 
   const navLinks = [
-    { name: "Work", href: "#work" },
     { name: "Services", href: "#services" },
     { name: "Pricing", href: "#pricing" },
-    { name: "About", href: "#about" },
+    { name: "FAQs", href: "#faq" },
+    { name: "Case Studies", href: "#work" },
   ];
 
   const { scrollYProgress } = useScroll();
@@ -53,8 +54,8 @@ export function Navbar() {
             ? "linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%)"
             : "linear-gradient(135deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.01) 100%)",
           boxShadow: isScrolled
-            ? "0 8px 32px 0 rgba(0,0,0,0.37), 0 0 0 1px rgba(255,255,255,0.05) inset, 0 2px 8px rgba(212,197,154,0.1)"
-            : "0 12px 40px 0 rgba(0,0,0,0.4), 0 0 0 1px rgba(255,255,255,0.05) inset, 0 4px 16px rgba(212,197,154,0.15)",
+            ? "0 8px 32px 0 rgba(0,0,0,0.37), 0 0 0 1px rgba(255,255,255,0.05) inset, 0 2px 8px rgba(198,162,85,0.1)"
+            : "0 12px 40px 0 rgba(0,0,0,0.4), 0 0 0 1px rgba(255,255,255,0.05) inset, 0 4px 16px rgba(198,162,85,0.15)",
         }}
       >
         {/* Glassmorphism overlay */}
@@ -64,15 +65,23 @@ export function Navbar() {
         <div className="absolute top-0 left-1/4 right-1/4 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent rounded-full pointer-events-none" />
         
         <div className="relative flex items-center justify-between">
-        <Link href="/">
-            <motion.span 
-              className="text-2xl font-display font-bold tracking-tight text-white cursor-pointer"
-              whileHover={{ scale: 1.05, opacity: 0.9 }}
+          <Link href="/">
+            <motion.div
+              className="flex items-center gap-3 cursor-pointer"
+              whileHover={{ scale: 1.05, opacity: 0.95 }}
               transition={{ duration: 0.2 }}
             >
-            SANGANAK<span className="text-primary italic font-serif-display">HQ</span>
-            </motion.span>
-        </Link>
+              <img
+                src={logo}
+                alt="SanganakHQ golden globe logo"
+                className="h-8 w-8 md:h-9 md:w-9 object-contain"
+              />
+              <span className="text-2xl font-display font-bold tracking-tight text-white">
+                SANGANAK
+                <span className="text-primary italic font-serif-display">HQ</span>
+              </span>
+            </motion.div>
+          </Link>
 
         {/* Desktop Nav */}
           <div className="hidden md:flex items-center gap-8">
@@ -80,7 +89,7 @@ export function Navbar() {
               <motion.a
               key={link.name}
               href={link.href}
-                className="text-sm font-medium text-white/60 uppercase tracking-widest text-xs relative"
+                className="text-sm font-medium text-white/60 uppercase tracking-widest text-xs relative font-sans"
                 whileHover={{ 
                   color: "#fff",
                   scale: 1.05
@@ -102,7 +111,7 @@ export function Navbar() {
             >
               <Button 
                 asChild
-                className="bg-primary hover:bg-primary/90 text-background rounded-full px-6 font-bold tracking-wide transition-all shadow-[0_0_20px_-5px_hsl(var(--primary)/0.5)]"
+                className="bg-gradient-to-r from-[#c6a255] via-[#e9d5a1] to-[#c6a255] hover:from-[#d4b575] hover:via-[#f0dfb8] hover:to-[#d4b575] text-background rounded-full px-6 font-bold tracking-wide transition-all shadow-[0_0_20px_-5px_rgba(198,162,85,0.5)]"
               >
                 <a href="https://cal.com/sanganakhq" target="_blank" rel="noreferrer">
                   Book a Strategy Call
@@ -149,7 +158,7 @@ export function Navbar() {
           ))}
           <Button 
             asChild
-            className="w-full bg-primary text-background hover:bg-primary/90 rounded-full h-12 font-bold tracking-wide mt-4"
+            className="w-full bg-gradient-to-r from-[#c6a255] via-[#e9d5a1] to-[#c6a255] hover:from-[#d4b575] hover:via-[#f0dfb8] hover:to-[#d4b575] text-background rounded-full h-12 font-bold tracking-wide mt-4 transition-all"
           >
             <a href="https://cal.com/sanganakhq" target="_blank" rel="noreferrer">
               Book a Strategy Call

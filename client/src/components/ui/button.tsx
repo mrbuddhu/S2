@@ -13,8 +13,8 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default:
-           // @replit: no hover, and add primary border
-           "bg-primary text-primary-foreground border border-primary-border",
+           // Luxury button gradient matching old site sanganakhq.com
+           "bg-gradient-to-r from-[#c6a255] via-[#e9d5a1] to-[#c6a255] text-primary-foreground border border-[#c6a255]/30 shadow-lg",
         destructive:
           "bg-destructive text-destructive-foreground shadow-sm border-destructive-border",
         outline:

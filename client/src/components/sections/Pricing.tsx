@@ -23,89 +23,83 @@ interface Plan {
 const oneOffPlans: Plan[] = [
   {
     name: "Starter",
-    subtitle: "Design or Code Fix",
-    price: "$1,500",
-    range: "$1.5k – $2.5k",
-    description: "Perfect for early startups needing a specific fix.",
+    subtitle: "Focused design or code fixes",
+    price: "From $1,500",
+    range: "",
+    description: "Focused design or code fixes",
     features: [
-      "Single Area Audit (Design or Code)",
-      "UI/UX Polish or Frontend Fix",
-      "Performance Optimization",
-      "2-Week Turnaround",
-      "Direct Founder Support"
+      "Single area audit & fix",
+      "UI/UX or frontend improvements",
+      "Performance optimization",
+      "2-week turnaround"
     ],
-    cta: "Get Started",
+    cta: "View Project Scope",
     popular: false
   },
   {
     name: "Standard",
-    subtitle: "Design + Dev + Funnel",
-    price: "$3,500",
-    range: "$3.5k – $6k",
-    description: "For funded startups needing a complete overhaul.",
+    subtitle: "Full system rebuild",
+    price: "From $3,500",
+    range: "",
+    description: "Full system rebuild",
     features: [
-      "Full System Audit",
-      "Complete Design Rebuild",
-      "Frontend & Backend Refactor",
-      "Funnel Optimization",
-      "Analytics Setup (GA4/Pixel)",
-      "4-Week Turnaround"
+      "Complete system audit",
+      "Design, development, funnel optimization",
+      "Analytics & tracking setup",
+      "4-week turnaround"
     ],
-    cta: "Start Rebuild",
+    cta: "View Project Scope",
     popular: true
   },
   {
     name: "Elite",
-    subtitle: "Full System Overhaul",
-    price: "$8,000",
-    range: "$8k – $15k+",
-    description: "For growth-focused brands demanding perfection.",
+    subtitle: "Enterprise-grade systems",
+    price: "From $8,000",
+    range: "",
+    description: "Enterprise-grade systems",
     features: [
-      "Enterprise-Grade Audit",
-      "Premium Brand Identity System",
-      "Scalable Architecture Rebuild",
-      "Advanced Marketing Funnels",
-      "CRO & A/B Testing Setup",
-      "Priority 24/7 Support",
-      "6-8 Week Turnaround"
+      "Advanced architecture",
+      "Premium brand & design system",
+      "Advanced CRO & funnels",
+      "Priority delivery"
     ],
-    cta: "Contact for Quote",
+    cta: "View Project Scope",
     popular: false
   }
 ];
 
 const retainerPlans: Plan[] = [
   {
-    name: "Growth Partner",
-    subtitle: "Ongoing Optimization",
+    name: "Ongoing Optimization",
+    subtitle: "Continuous improvement for stable growth",
     price: "$2,500",
     period: "/month",
-    description: "Continuous improvement for stable growth.",
+    description: "Continuous improvement for stable growth",
     features: [
-      "Weekly Performance Audits",
-      "Ongoing Design Iterations",
-      "Code Maintenance & Updates",
-      "Monthly Strategy Calls",
-      "Priority Support"
+      "Weekly performance audits",
+      "Ongoing design iterations",
+      "Code maintenance & updates",
+      "Monthly strategy calls",
+      "Includes automation and AI-assisted workflows"
     ],
-    cta: "Start Retainer",
+    cta: "View Retainer Scope",
     popular: false
   },
   {
     name: "Scale Partner",
-    subtitle: "Aggressive Growth",
+    subtitle: "Full-stack team extension for aggressive scaling",
     price: "$5,000",
     period: "/month",
-    description: "Full-service team extension for rapid scaling.",
+    description: "Full-stack team extension for aggressive scaling",
     features: [
-      "Daily Optimization Sprints",
-      "Full Stack Dev & Design Team",
-      "Advanced Funnel Management",
-      "Weekly Strategy Workshops",
-      "Direct Slack Access",
-      "Quarterly Business Reviews"
+      "Daily optimization sprints",
+      "Full-stack dev & design team",
+      "Advanced automation, funnels",
+      "Direct founder access",
+      "Weekly strategy workshops",
+      "Quarterly business reviews"
     ],
-    cta: "Partner With Us",
+    cta: "View Retainer Scope",
     popular: true
   }
 ];
@@ -114,6 +108,7 @@ export function Pricing() {
   const [isRetainer, setIsRetainer] = useState(false);
   const [contactOpen, setContactOpen] = useState(false);
   const [selectedPlan, setSelectedPlan] = useState("");
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const sectionRef = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -131,15 +126,24 @@ export function Pricing() {
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,hsl(var(--primary)/0.05),transparent_50%)]" />
       
       <div className="container mx-auto px-6 relative z-10">
-        <div className="text-center mb-16 max-w-3xl mx-auto">
+        <div className="text-center mb-20 max-w-3xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="inline-block px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-medium tracking-widest uppercase mb-6"
+          >
+            Investment
+          </motion.div>
           <h2 className="text-4xl md:text-6xl font-display font-medium text-white mb-6">
-            Transparent, <span className="italic text-primary">Value-Based</span> Pricing.
+            <span className="text-gold-gradient">Transparent</span>, <span className="italic text-gold-gradient font-serif-display">Value-Based</span> <span className="text-gold-gradient">Pricing</span>.
           </h2>
-          <p className="text-xl text-muted-foreground mb-10">
-            Whether you need a one-time rescue or a long-term growth partner, we have a model that fits your stage.
+          <p className="text-xl text-muted-foreground/90 font-sans font-normal leading-relaxed">
+            We price for outcomes, not hours.
           </p>
+        </div>
 
-          {/* Toggle Switch */}
+        <div className="flex justify-center mb-12">
           <motion.div 
             className="inline-flex items-center p-1 bg-white/5 border border-white/10 rounded-full backdrop-blur-md"
             initial={{ opacity: 0, scale: 0.9 }}
@@ -147,34 +151,34 @@ export function Pricing() {
             viewport={viewportOptions}
             transition={{ duration: 0.5 }}
           >
-            <motion.button
-              onClick={() => setIsRetainer(false)}
-              className={cn(
-                "px-8 py-3 rounded-full text-sm font-bold tracking-wide",
-                !isRetainer 
-                  ? "bg-primary text-background shadow-lg" 
-                  : "text-muted-foreground"
-              )}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              transition={{ duration: 0.2 }}
-            >
-              One-Off Projects
-            </motion.button>
-            <motion.button
-              onClick={() => setIsRetainer(true)}
-              className={cn(
-                "px-8 py-3 rounded-full text-sm font-bold tracking-wide",
-                isRetainer 
-                  ? "bg-primary text-background shadow-lg" 
-                  : "text-muted-foreground"
-              )}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              transition={{ duration: 0.2 }}
-            >
-              Monthly Retainer
-            </motion.button>
+          <motion.button
+            onClick={() => setIsRetainer(false)}
+            className={cn(
+              "px-8 py-3 rounded-full text-sm font-bold tracking-wide transition-all font-sans",
+              !isRetainer 
+                ? "bg-gradient-to-r from-[#c6a255] via-[#e9d5a1] to-[#c6a255] text-background shadow-lg" 
+                : "text-muted-foreground/90 hover:text-gold-gradient"
+            )}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            transition={{ duration: 0.2 }}
+          >
+            One-Off Projects
+          </motion.button>
+          <motion.button
+            onClick={() => setIsRetainer(true)}
+            className={cn(
+              "px-8 py-3 rounded-full text-sm font-bold tracking-wide transition-all font-sans",
+              isRetainer 
+                ? "bg-gradient-to-r from-[#c6a255] via-[#e9d5a1] to-[#c6a255] text-background shadow-lg" 
+                : "text-muted-foreground/90 hover:text-gold-gradient"
+            )}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            transition={{ duration: 0.2 }}
+          >
+            Monthly Retainer
+          </motion.button>
           </motion.div>
         </div>
 
@@ -197,54 +201,54 @@ export function Pricing() {
               whileHover="hover"
               whileTap="tap"
               style={{ y: index % 2 === 0 ? y : undefined }}
+              onMouseEnter={() => setHoveredIndex(index)}
+              onMouseLeave={() => setHoveredIndex(null)}
               className={cn(
                 "relative p-8 md:p-10 flex flex-col h-full premium-card group cursor-pointer",
                 plan.popular ? "bg-card/60 border-primary/20" : "bg-card/20"
               )}
             >
               {plan.popular && (
-                <div className="absolute top-0 right-0 -mt-3 -mr-3 px-4 py-1 bg-primary text-background text-xs font-bold uppercase tracking-wider rounded-full shadow-lg">
+                <div className="absolute top-0 right-0 -mt-3 -mr-3 px-4 py-1 bg-gradient-to-r from-[#c6a255] via-[#e9d5a1] to-[#c6a255] text-background text-xs font-bold uppercase tracking-wider rounded-full shadow-lg">
                   Most Popular
                 </div>
               )}
 
-              <div className="mb-8">
+              <div className="mb-6">
                 <h3 className="text-xl font-bold text-white mb-2">{plan.name}</h3>
                 <p className="text-sm text-primary font-medium uppercase tracking-wider mb-6">{plan.subtitle}</p>
                 <div className="flex items-baseline gap-1">
                   <span className="text-4xl md:text-5xl font-display font-medium text-white">
                     {plan.price}
                   </span>
-                  {plan.range && <span className="text-sm text-muted-foreground ml-2">({plan.range})</span>}
                   {plan.period && <span className="text-sm text-muted-foreground">{plan.period}</span>}
                 </div>
-                <p className="text-muted-foreground mt-4 leading-relaxed">
+                <p className="text-muted-foreground/90 font-sans font-normal mt-4 leading-relaxed">
                   {plan.description}
                 </p>
               </div>
 
-              <ul className="space-y-4 mb-10 flex-grow">
+              <ul className="space-y-3 flex-grow mb-8">
                 {plan.features.map((feature, i) => (
-                  <li key={i} className="flex items-start gap-3 text-sm text-white/80">
-                    <CheckCircle2 className="w-5 h-5 text-primary shrink-0" />
-                    <span className="leading-tight">{feature}</span>
+                  <li key={i} className="flex items-start gap-3 text-sm text-white/90 font-sans">
+                    <CheckCircle2 className="w-5 h-5 text-primary shrink-0 mt-0.5" />
+                    <span className="leading-relaxed">{feature}</span>
                   </li>
                 ))}
               </ul>
 
-              <Button 
+              <Button
+                variant="outline"
                 className={cn(
-                  "w-full h-14 text-base font-bold tracking-wide rounded-full transition-all duration-300 group-hover:translate-y-[-2px]",
-                  plan.popular 
-                    ? "bg-primary text-background hover:bg-primary/90 shadow-[0_0_20px_-5px_hsl(var(--primary)/0.3)]" 
-                    : "bg-white/10 text-white hover:bg-white/20"
+                  "w-full px-8 py-3 rounded-full text-sm font-bold tracking-wide transition-all font-sans border-white/10 hover:bg-primary/5 hover:border-primary/30 hover:text-gold-gradient text-white",
+                  hoveredIndex === index && "bg-gradient-to-r from-[#c6a255] via-[#e9d5a1] to-[#c6a255] text-background shadow-lg border-none hover:shadow-lg hover:shadow-[#c6a255]/25"
                 )}
                 onClick={() => {
                   setSelectedPlan(plan.name);
                   setContactOpen(true);
                 }}
               >
-                {plan.cta} <ArrowRight className="ml-2 w-4 h-4" />
+                Book a Call <ArrowRight className="ml-2 w-4 h-4" />
               </Button>
             </motion.div>
           ))}

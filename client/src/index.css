@@ -55,8 +55,9 @@
   --popover: 220 15% 8%;
   --popover-foreground: 40 20% 97%;
 
-  /* Sophisticated Gold/Bronze accent - Maximum Brightness & Vibrancy */
-  --primary: 45 60% 80%; /* Very Bright Gold - High saturation & lightness */
+  /* Gold color from old website sanganakhq.com - #c6a255 (RGB: 198, 162, 85) */
+  /* HSL conversion: #c6a255 = hsl(41, 50%, 55%) - exact match from CTA button */
+  --primary: 41 50% 55%; /* #c6a255 - exact match from CTA button */
   --primary-foreground: 220 15% 6%;
 
   --secondary: 220 10% 12%;
@@ -65,7 +66,7 @@
   --muted: 220 10% 12%;
   --muted-foreground: 220 5% 55%;
 
-  --accent: 45 60% 80%;
+  --accent: 41 50% 55%; /* #c6a255 - exact match from CTA button */
   --accent-foreground: 220 15% 6%;
 
   --destructive: 0 62% 30%;
@@ -73,7 +74,7 @@
 
   --border: 220 10% 12%;
   --input: 220 10% 12%;
-  --ring: 45 60% 80%;
+  --ring: 41 50% 55%; /* #c6a255 - exact match from CTA button */
 
   /* UPDATED: Rounded corners as requested */
   --radius: 1rem; 
@@ -86,7 +87,7 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  @apply font-display tracking-tight text-white;
+  @apply font-display tracking-tight text-white font-medium;
 }
 
 .premium-card {
@@ -94,7 +95,11 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .premium-text-gradient {
-  @apply bg-clip-text text-transparent bg-gradient-to-r from-[#f5e8a8] via-[#fff4d4] to-[#e8d4a0];
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-[#c6a255] via-[#e9d5a1] to-[#c6a255];
+}
+
+.text-gold-gradient {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-[#c6a255] via-[#e9d5a1] to-[#c6a255];
 }
 
 .font-serif-display {

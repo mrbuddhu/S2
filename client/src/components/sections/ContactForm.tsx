@@ -6,6 +6,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { X } from "lucide-react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { useToast } from "@/hooks/use-toast";
 
 interface ContactFormProps {
   open: boolean;
@@ -14,6 +15,7 @@ interface ContactFormProps {
 }
 
 export function ContactForm({ open, onOpenChange, defaultProjectType = "" }: ContactFormProps) {
+  const { toast } = useToast();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -22,15 +24,51 @@ export function ContactForm({ open, onOpenChange, defaultProjectType = "" }: Con
     budget: "",
     message: "",
   });
+  const [submitting, setSubmitting] = useState(false);
+
+  const contactEndpoint =
+    import.meta.env.VITE_CONTACT_ENDPOINT?.trim() ||
+    "https://formspree.io/f/your-form-id"; // replace with your Formspree endpoint
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // TODO: Connect to your backend API endpoint
-    // Example: await fetch('/api/contact', { method: 'POST', body: JSON.stringify(formData) })
-    console.log("Form submitted:", formData);
-    // TODO: Show success toast and close modal
-    alert("Thank you! We'll be in touch soon. (Connect this to your backend)");
-    onOpenChange(false);
+    setSubmitting(true);
+    try {
+      const res = await fetch(contactEndpoint, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (!res.ok) {
+        throw new Error(`Contact request failed: ${res.status}`);
+      }
+
+      toast({
+        title: "Message sent",
+        description: "Thanks! We’ll get back to you within 24 hours.",
+      });
+      setFormData({
+        name: "",
+        email: "",
+        company: "",
+        projectType: defaultProjectType || "",
+        budget: "",
+        message: "",
+      });
+      onOpenChange(false);
+    } catch (error) {
+      console.error("Contact submit failed", error);
+      toast({
+        title: "Something went wrong",
+        description: "Please try again or email hello@sanganakhq.com.",
+      });
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -136,9 +174,10 @@ export function ContactForm({ open, onOpenChange, defaultProjectType = "" }: Con
 
           <Button
             type="submit"
-            className="w-full bg-primary hover:bg-primary/90 text-background h-12 text-base font-bold rounded-full"
+            disabled={submitting}
+            className="w-full bg-gradient-to-r from-[#c6a255] via-[#e9d5a1] to-[#c6a255] hover:from-[#d4b575] hover:via-[#f0dfb8] hover:to-[#d4b575] text-background h-12 text-base font-bold rounded-full transition-all"
           >
-            Send Message
+            {submitting ? "Sending..." : "Send Message"}
           </Button>
         </form>
       </DialogContent>

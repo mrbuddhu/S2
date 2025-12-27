@@ -1,8 +1,15 @@
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, ArrowUpRight, Maximize2 } from "lucide-react";
 import { scrollReveal, cardHover, viewportOptions } from "@/lib/animations";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+} from "@/components/ui/dialog";
 import project1 from "@assets/generated_images/saas_dashboard_dark_mode.png";
 import project2 from "@assets/generated_images/mobile_app_crypto_wallet.png";
 import project3 from "@assets/generated_images/e-commerce_fashion_store.png";
@@ -100,6 +107,7 @@ const projects = [
 ];
 
 export function CaseStudies() {
+  const [selectedProject, setSelectedProject] = useState<number | null>(null);
   const sectionRef = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -116,27 +124,21 @@ export function CaseStudies() {
       style={{ opacity }}
     >
       <div className="container mx-auto px-6">
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-20 gap-8">
-          <div className="max-w-3xl">
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              className="inline-block px-3 py-1 mb-6 border border-primary/30 rounded-full bg-primary/5 text-primary text-xs font-bold uppercase tracking-widest"
-            >
-              Selected Work
-            </motion.div>
-            <h2 className="text-5xl md:text-7xl font-display font-medium text-white mb-6 leading-[0.9]">
-              We build <span className="italic font-serif-display text-muted-foreground">icons</span>, <br />
-              not just interfaces.
-            </h2>
-            <p className="text-xl text-muted-foreground/80 max-w-xl font-light">
-              From Series A startups to Fortune 500s. A curated selection of our most impactful deployments.
-            </p>
-          </div>
-          <Button variant="outline" className="hidden md:flex rounded-full border-white/10 hover:bg-white/5 hover:border-white/20 h-12 px-6 text-base group">
-            View All Projects <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
-          </Button>
+        <div className="text-center mb-20 max-w-3xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="inline-block px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-medium tracking-widest uppercase mb-6"
+          >
+            Selected Work
+          </motion.div>
+          <h2 className="text-4xl md:text-6xl font-display font-medium text-white mb-6">
+            We <span className="text-gold-gradient">build</span> <span className="italic text-gold-gradient font-serif-display">icons</span> — not just <span className="text-gold-gradient">interfaces</span>.
+          </h2>
+          <p className="text-xl text-muted-foreground/90 font-sans font-normal leading-relaxed">
+            Most of our work falls into three categories: SaaS & Platforms, Marketplaces & Fintech, and Premium Digital Products.
+          </p>
         </div>
 
         {/* Bento Grid */}
@@ -151,6 +153,7 @@ export function CaseStudies() {
               variants={cardHover}
               whileHover="hover"
               whileTap="tap"
+              onClick={() => setSelectedProject(index)}
               className={`group relative rounded-3xl overflow-hidden border border-white/5 bg-card/20 cursor-pointer ${
                 project.size === 'large' ? 'md:col-span-2' : 
                 project.size === 'medium' ? 'row-span-2' : ''
@@ -217,12 +220,76 @@ export function CaseStudies() {
           ))}
         </div>
 
-        <div className="mt-12 md:hidden flex justify-center">
-          <Button variant="outline" className="rounded-full border-white/10 hover:bg-white/5 hover:border-white/20 h-12 px-8 w-full text-base group">
-            View All Projects <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
-          </Button>
-        </div>
       </div>
+
+      {/* Case Study Modal */}
+      <Dialog open={selectedProject !== null} onOpenChange={(open) => !open && setSelectedProject(null)}>
+        <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto bg-background border-white/10 p-4 sm:p-6 md:p-8">
+          {selectedProject !== null && (
+            <>
+              <DialogHeader className="pb-4">
+                <DialogTitle className="text-2xl sm:text-3xl md:text-4xl font-display font-medium text-white">
+                  {projects[selectedProject].title}
+                </DialogTitle>
+                <DialogDescription className="text-primary font-medium uppercase tracking-wider text-xs sm:text-sm pt-2">
+                  {projects[selectedProject].category}
+                </DialogDescription>
+              </DialogHeader>
+
+              <div className="space-y-4 sm:space-y-6 mt-2 sm:mt-4">
+                {/* Project Image */}
+                <div className="rounded-lg overflow-hidden border border-white/10">
+                  <img 
+                    src={projects[selectedProject].image} 
+                    alt={projects[selectedProject].title}
+                    className="w-full h-auto object-cover"
+                  />
+                </div>
+
+                {/* Tags */}
+                <div className="flex flex-wrap gap-2">
+                  {projects[selectedProject].tags.map((tag, i) => (
+                    <span key={i} className="px-2 sm:px-3 py-1 rounded-full bg-white/5 border border-white/10 text-white/90 text-[10px] sm:text-xs font-medium font-sans">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+
+                {/* Placeholder Content Sections - Add your content here */}
+                <div className="space-y-4 sm:space-y-6 pt-4 border-t border-white/5">
+                  <div>
+                    <h3 className="text-lg sm:text-xl font-display font-medium text-white mb-2 sm:mb-3">Overview</h3>
+                    <p className="text-sm sm:text-base text-muted-foreground/90 font-sans font-normal leading-relaxed">
+                      {/* Add project overview here */}
+                    </p>
+                  </div>
+
+                  <div>
+                    <h3 className="text-lg sm:text-xl font-display font-medium text-white mb-2 sm:mb-3">Challenge</h3>
+                    <p className="text-sm sm:text-base text-muted-foreground/90 font-sans font-normal leading-relaxed">
+                      {/* Add challenge description here */}
+                    </p>
+                  </div>
+
+                  <div>
+                    <h3 className="text-lg sm:text-xl font-display font-medium text-white mb-2 sm:mb-3">Solution</h3>
+                    <p className="text-sm sm:text-base text-muted-foreground/90 font-sans font-normal leading-relaxed">
+                      {/* Add solution description here */}
+                    </p>
+                  </div>
+
+                  <div>
+                    <h3 className="text-lg sm:text-xl font-display font-medium text-white mb-2 sm:mb-3">Results</h3>
+                    <p className="text-sm sm:text-base text-muted-foreground/90 font-sans font-normal leading-relaxed">
+                      {/* Add results/metrics here */}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </>
+          )}
+        </DialogContent>
+      </Dialog>
     </section>
   );
 }

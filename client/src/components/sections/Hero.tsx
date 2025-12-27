@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Phone } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { ContactForm } from "./ContactForm";
 
 export function Hero() {
@@ -20,7 +20,7 @@ export function Hero() {
 
   return (
     <section 
-      className="relative min-h-screen flex flex-col justify-between pt-16 md:pt-20 overflow-hidden"
+      className="relative h-screen flex flex-col justify-between pt-16 md:pt-20 overflow-hidden"
     >
       {/* Gradient Background */}
       <div className="absolute inset-0 z-0">
@@ -28,159 +28,170 @@ export function Hero() {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,hsl(var(--primary)/0.05)_0%,transparent_70%)]" />
       </div>
 
-      <div className="container mx-auto px-6 relative z-10 text-center pt-8 md:pt-12 flex-1 flex flex-col justify-center">
-        <motion.div
-          initial={{ opacity: 0, y: 20, scale: 0.9 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
-          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-          whileHover={{ scale: 1.05, y: -2 }}
-          className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-white/5 border border-white/10 backdrop-blur-md text-sm font-medium text-primary mb-3 md:mb-4 mx-auto cursor-default"
-        >
-          <motion.span 
-            className="relative flex h-2 w-2"
-            animate={{ scale: [1, 1.2, 1] }}
-            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+      <div className="container mx-auto px-4 sm:px-6 relative z-10 text-center flex-1 flex flex-col justify-between py-2 md:py-4">
+        {/* Main Content */}
+        <div className="flex-1 flex flex-col justify-center space-y-1 sm:space-y-2 md:space-y-3">
+          <motion.h1
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+            className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl xl:text-7xl font-display font-medium tracking-tight text-white leading-[1.2] drop-shadow-2xl max-w-5xl mx-auto flex items-start justify-center gap-2 sm:gap-3 md:whitespace-nowrap"
           >
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
-          </motion.span>
-          <span className="tracking-widest uppercase text-xs font-bold">Fix Your Broken Brand or Build a New One</span>
-        </motion.div>
+            <span className="flex items-baseline gap-2 sm:gap-3 flex-wrap md:flex-nowrap justify-center">
+              <span className="whitespace-normal sm:whitespace-nowrap">We fix broken growth systems.</span>
+              
+              <motion.a
+                href="https://sanganak.ai"
+                target="_blank"
+                rel="noreferrer"
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.6, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                whileHover={{ scale: 1.1 }}
+                className="relative inline-flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 group cursor-pointer flex-shrink-0 self-start -mt-4 sm:-mt-6 md:-mt-8 lg:-mt-10"
+              >
+                {/* Rotating Circle with Text */}
+                <motion.div
+                  className="absolute inset-0"
+                  animate={{ rotate: 360 }}
+                  transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                >
+                  <svg
+                    className="w-full h-full"
+                    viewBox="0 0 100 100"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <defs>
+                      <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" stopColor="#c6a255" />
+                        <stop offset="50%" stopColor="#e9d5a1" />
+                        <stop offset="100%" stopColor="#c6a255" />
+                      </linearGradient>
+                      <path
+                        id="circle-path-hero"
+                        d="M 50, 50 m -42, 0 a 42,42 0 1,1 84,0 a 42,42 0 1,1 -84,0"
+                      />
+                    </defs>
+                    <text
+                      fontSize="9"
+                      fontWeight="800"
+                      fill="url(#goldGradient)"
+                      letterSpacing="0.06em"
+                    >
+                      <textPath href="#circle-path-hero" startOffset="0%">
+                        POWERED BY SANGANAK AI • SANGANAK HQ • 
+                      </textPath>
+                    </text>
+                  </svg>
+                </motion.div>
+                {/* Pulse Effect */}
+                <motion.div
+                  className="absolute inset-0 rounded-full border border-[#c6a255]/30"
+                  animate={{
+                    scale: [1, 1.2, 1],
+                    opacity: [0.5, 0, 0.5],
+                  }}
+                  transition={{
+                    duration: 3,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}
+                />
+              </motion.a>
+            </span>
+          </motion.h1>
 
-        <motion.h1
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-          className="text-5xl md:text-7xl lg:text-8xl font-display font-medium tracking-tight text-white mb-4 md:mb-6 leading-[1.1] drop-shadow-2xl"
-        >
-          Design. Code. <br className="hidden md:block" />
-          <motion.span 
-            className="italic font-serif-display premium-text-gradient inline-block pb-2 md:pb-3"
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
-            whileHover={{ scale: 1.05 }}
-            style={{ overflow: 'visible', lineHeight: '1.2' }}
-          >
-            Marketing.
-          </motion.span> Done Right.
-        </motion.h1>
-
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
-          className="text-base md:text-lg lg:text-xl text-muted-foreground/80 max-w-3xl mx-auto mb-6 md:mb-8 font-light leading-relaxed"
-        >
-          We audit what's broken, rebuild what matters, and optimize every layer of your brand's system for <span className="text-white font-medium">real revenue</span>. <span className="text-muted-foreground/60">(We also build fresh from scratch — see services below.)</span>
-        </motion.p>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-6"
-        >
-          <Button
-            asChild
-            size="lg"
-            className="bg-primary hover:bg-primary/90 text-background rounded-full px-10 h-16 text-lg font-bold tracking-wide transition-all duration-300 transform hover:-translate-y-1 shadow-[0_0_20px_-5px_hsl(var(--primary)/0.5)]"
-          >
-            <a href="https://cal.com/sanganakhq" target="_blank" rel="noreferrer">
-              <Phone className="mr-2 h-5 w-5 inline-block" />
-              Book a Strategy Call
-              <ArrowRight className="ml-2 h-5 w-5 inline-block" />
-            </a>
-          </Button>
-          <Button 
-            variant="outline" 
-            size="lg" 
-            className="border-white/10 text-white hover:bg-white/5 hover:border-white/20 rounded-full px-10 h-16 text-lg font-medium backdrop-blur-sm transition-all duration-300"
-            onClick={() => {
-              setProjectType("new-build");
-              setContactOpen(true);
-            }}
-          >
-            Send Your Brief
-            <ArrowRight className="ml-2 h-5 w-5 inline-block" />
-          </Button>
-        </motion.div>
-      </div>
-
-      {/* Client Logos at Bottom */}
-      <div className="relative z-10 w-full pb-8 md:pb-12">
-        <div className="container mx-auto px-6">
           <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 1 }}
-            className="text-xs md:text-sm font-medium text-muted-foreground/60 uppercase tracking-widest text-center mb-4 md:mb-6"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.35, ease: "easeOut" }}
+            className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-gold-gradient max-w-3xl mx-auto font-display font-medium leading-relaxed mt-6"
           >
-            Truly Global. Clientele Across 6 Continents.
+            Design, technology, and acquisition — done right!
           </motion.p>
-          <div className="space-y-4">
-            <div className="relative flex overflow-x-hidden">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 1.2 }}
-                className="animate-marquee whitespace-nowrap flex items-center gap-8 md:gap-12 px-4"
-              >
-                {marqueeClients.map((client, i) => (
-                  <span
-                    key={`row1-${i}`}
-                    className="text-lg md:text-xl lg:text-2xl font-display font-bold text-white/20 hover:text-white/40 transition-colors cursor-default"
-                  >
-                    {client}
-                  </span>
-                ))}
-              </motion.div>
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 1.2 }}
-                className="absolute top-0 animate-marquee2 whitespace-nowrap flex items-center gap-8 md:gap-12 px-4"
-              >
-                {marqueeClients.map((client, i) => (
-                  <span
-                    key={`row1b-${i}`}
-                    className="text-lg md:text-xl lg:text-2xl font-display font-bold text-white/20 hover:text-white/40 transition-colors cursor-default"
-                  >
-                    {client}
-                  </span>
-                ))}
-              </motion.div>
-            </div>
 
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
+            className="text-sm sm:text-base md:text-lg text-muted-foreground/90 max-w-2xl mx-auto font-sans font-normal leading-relaxed mt-4"
+          >
+            Founder-led execution for startups, brands, and operators who want results — not coordination headaches.
+          </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
+            className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-3 md:gap-4 pt-1 sm:pt-2"
+          >
+            <Button
+              asChild
+              size="lg"
+              className="bg-gradient-to-r from-[#c6a255] via-[#e9d5a1] to-[#c6a255] hover:from-[#d4b575] hover:via-[#f0dfb8] hover:to-[#d4b575] text-background rounded-full px-5 sm:px-6 md:px-8 h-10 sm:h-12 md:h-14 text-xs sm:text-sm md:text-base font-bold tracking-wide transition-all duration-300 transform hover:-translate-y-1 shadow-[0_0_20px_-5px_rgba(198,162,85,0.5)]"
+            >
+              <a href="https://cal.com/sanganakhq" target="_blank" rel="noreferrer">
+                Book a Strategy Call
+                <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5 inline-block" />
+              </a>
+            </Button>
+            <Button 
+              variant="outline" 
+              size="lg" 
+              className="border-white/10 text-white hover:bg-primary/5 hover:border-primary/30 hover:text-gold-gradient rounded-full px-5 sm:px-6 md:px-8 h-10 sm:h-12 md:h-14 text-xs sm:text-sm md:text-base font-medium backdrop-blur-sm transition-all duration-300"
+              onClick={() => {
+                setProjectType("new-build");
+                setContactOpen(true);
+              }}
+            >
+              Send Your Brief
+              <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5 inline-block" />
+            </Button>
+          </motion.div>
+        </div>
+
+        {/* Client Logos at Bottom */}
+        <div className="relative z-10 w-full pb-1 sm:pb-2 md:pb-3">
+          <div className="container mx-auto px-4 sm:px-6">
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.8, delay: 1 }}
+              className="text-[9px] sm:text-[10px] md:text-xs font-medium text-muted-foreground/80 uppercase tracking-widest text-center mb-4 sm:mb-6 md:mb-8"
+            >
+              Trusted by teams across 6 continents
+            </motion.p>
             <div className="relative flex overflow-x-hidden">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 1.4 }}
-                className="animate-marquee whitespace-nowrap flex items-center gap-8 md:gap-12 px-4"
+                transition={{ duration: 0.8, delay: 1.2 }}
+                className="animate-marquee whitespace-nowrap flex items-center gap-4 sm:gap-6 md:gap-8 lg:gap-12 px-2 sm:px-4"
               >
                 {marqueeClients.map((client, i) => (
-                  <span
-                    key={`row2-${i}`}
-                    className="text-lg md:text-xl lg:text-2xl font-display font-bold text-white/20 hover:text-white/40 transition-colors cursor-default"
+                  <motion.span
+                    key={`row1-${i}`}
+                    className="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl font-display font-bold text-white/40 hover:text-white/80 transition-all cursor-default"
+                    whileHover={{ scale: 1.15 }}
                   >
                     {client}
-                  </span>
+                  </motion.span>
                 ))}
               </motion.div>
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 1.4 }}
-                className="absolute top-0 animate-marquee2 whitespace-nowrap flex items-center gap-8 md:gap-12 px-4"
+                transition={{ duration: 0.8, delay: 1.2 }}
+                className="absolute top-0 animate-marquee2 whitespace-nowrap flex items-center gap-4 sm:gap-6 md:gap-8 lg:gap-12 px-2 sm:px-4"
               >
                 {marqueeClients.map((client, i) => (
-                  <span
-                    key={`row2b-${i}`}
-                    className="text-lg md:text-xl lg:text-2xl font-display font-bold text-white/20 hover:text-white/40 transition-colors cursor-default"
+                  <motion.span
+                    key={`row1b-${i}`}
+                    className="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl font-display font-bold text-white/40 hover:text-white/80 transition-all cursor-default"
+                    whileHover={{ scale: 1.15 }}
                   >
                     {client}
-                  </span>
+                  </motion.span>
                 ))}
               </motion.div>
             </div>

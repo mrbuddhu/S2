@@ -62,7 +62,7 @@ export function VideoTestimonials() {
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-display font-medium text-white mb-6">
-            Client <span className="italic font-serif-display text-primary">Love</span>
+            <span className="text-gold-gradient">Client</span> <span className="italic font-serif-display text-gold-gradient">Love</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
             Real stories from founders and leaders who transformed their businesses with SanganakHQ.

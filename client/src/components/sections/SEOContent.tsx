@@ -160,9 +160,9 @@ export function SEOContent() {
             Our Services
           </motion.div>
           <h2 className="text-4xl md:text-6xl font-display font-medium text-white mb-6">
-            Premium Digital Services <span className="italic font-serif-display text-primary">Across All Categories</span>
+            <span className="text-gold-gradient">Premium</span> <span className="text-gold-gradient">Digital</span> <span className="text-gold-gradient">Services</span> <span className="italic font-serif-display text-gold-gradient">Across All Categories</span>
           </h2>
-          <p className="text-lg text-muted-foreground">
+          <p className="text-lg text-muted-foreground/90 font-sans font-normal">
             From brand design to blockchain development, we deliver world-class solutions across every digital category.
           </p>
         </div>

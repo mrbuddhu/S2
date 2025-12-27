@@ -59,9 +59,9 @@ export const hoverLift: Variants = {
 };
 
 export const hoverGlow: Variants = {
-  rest: { boxShadow: "0 0 0px rgba(212, 197, 154, 0)" },
+  rest: { boxShadow: "0 0 0px rgba(198, 162, 85, 0)" },
   hover: { 
-    boxShadow: "0 10px 40px -10px rgba(212, 197, 154, 0.4)",
+    boxShadow: "0 10px 40px -10px rgba(198, 162, 85, 0.4)",
     transition: { duration: 0.3 }
   }
 };
@@ -114,16 +114,16 @@ export const cardHover: Variants = {
 export const buttonPress: Variants = {
   rest: { 
     scale: 1,
-    boxShadow: "0 0 20px -5px rgba(212, 197, 154, 0.3)"
+    boxShadow: "0 0 20px -5px rgba(198, 162, 85, 0.3)"
   },
   hover: { 
     scale: 1.05,
-    boxShadow: "0 5px 30px -5px rgba(212, 197, 154, 0.5)",
+    boxShadow: "0 5px 30px -5px rgba(198, 162, 85, 0.5)",
     transition: { duration: 0.2 }
   },
   tap: { 
     scale: 0.95,
-    boxShadow: "0 0 10px -5px rgba(212, 197, 154, 0.2)",
+    boxShadow: "0 0 10px -5px rgba(198, 162, 85, 0.2)",
     transition: { duration: 0.1 }
   }
 };

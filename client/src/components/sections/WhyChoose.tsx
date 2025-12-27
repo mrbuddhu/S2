@@ -4,33 +4,39 @@ import { scrollReveal, viewportOptions } from "@/lib/animations";
 
 const comparison = [
   {
-    feature: "Project Timeline",
+    feature: "Timeline",
     otherAgencies: "3-6 months",
     sanganak: "2-8 weeks",
     sanganakHighlight: true
   },
   {
-    feature: "Support & Maintenance",
-    otherAgencies: "Limited support",
-    sanganak: "Dedicated support",
+    feature: "Communication",
+    otherAgencies: "Account managers",
+    sanganak: "Founder-led",
     sanganakHighlight: true
   },
   {
-    feature: "Technology Stack",
-    otherAgencies: "Outdated tech",
-    sanganak: "Cutting-edge",
+    feature: "Tech Stack",
+    otherAgencies: "Outdated",
+    sanganak: "Modern",
     sanganakHighlight: true
   },
   {
-    feature: "Design Quality",
-    otherAgencies: "Template-based",
-    sanganak: "Bespoke luxury",
+    feature: "Design",
+    otherAgencies: "Templates",
+    sanganak: "Design-first thinking",
     sanganakHighlight: true
   },
   {
-    feature: "Project Management",
-    otherAgencies: "Poor communication",
-    sanganak: "Transparent process",
+    feature: "Focus",
+    otherAgencies: "Deliverables",
+    sanganak: "Outcomes",
+    sanganakHighlight: true
+  },
+  {
+    feature: "Speed",
+    otherAgencies: "Slow with quality",
+    sanganak: "Fast with quality",
     sanganakHighlight: true
   }
 ];
@@ -39,20 +45,20 @@ export function WhyChoose() {
   return (
     <section className="py-32 bg-background/50 border-t border-white/5">
       <div className="container mx-auto px-6">
-        <div className="text-center mb-16 max-w-3xl mx-auto">
+        <div className="text-center mb-20 max-w-3xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={viewportOptions}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-medium tracking-widest uppercase mb-6"
+            viewport={{ once: true }}
+            className="inline-block px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-medium tracking-widest uppercase mb-6"
           >
-            Why Choose SanganakHQ
+            The Advantage
           </motion.div>
           <h2 className="text-4xl md:text-6xl font-display font-medium text-white mb-6">
-            See how we deliver <span className="italic font-serif-display text-primary">3x faster</span> launches and 30% conversion lifts vs traditional agencies
+            <span className="text-gold-gradient">Founder-led.</span> Senior execution. <span className="italic text-gold-gradient font-serif-display">Results owned.</span>
           </h2>
-          <p className="text-lg text-muted-foreground">
-            We don't just build/design Products—we create digital experiences that drive results. Our premium approach ensures your project stands out in today's competitive landscape.
+          <p className="text-xl text-muted-foreground/90 font-sans font-normal leading-relaxed">
+            You work directly with experienced operators who refuse to ship average work.
           </p>
         </div>
 
@@ -88,15 +94,15 @@ export function WhyChoose() {
                 className="grid grid-cols-3 gap-0 border-b border-white/5 last:border-b-0 hover:bg-white/[0.02] transition-colors"
               >
                 <div className="p-6 border-r border-white/5">
-                  <p className="text-white font-medium">{row.feature}</p>
+                  <p className="text-white font-sans font-medium">{row.feature}</p>
                 </div>
                 <div className="p-6 border-r border-white/5 flex items-center gap-2">
                   <X className="w-4 h-4 text-destructive" />
-                  <p className="text-muted-foreground text-sm">{row.otherAgencies}</p>
+                  <p className="text-muted-foreground/90 text-sm font-sans">{row.otherAgencies}</p>
                 </div>
                 <div className={`p-6 flex items-center gap-2 ${row.sanganakHighlight ? 'bg-primary/5' : ''}`}>
                   <Check className="w-4 h-4 text-primary" />
-                  <p className="text-white font-medium text-sm">{row.sanganak}</p>
+                  <p className="text-white font-sans font-medium text-sm">{row.sanganak}</p>
                 </div>
               </motion.div>
             ))}
